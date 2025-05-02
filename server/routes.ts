@@ -29,6 +29,38 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.get('/api/projects/category/:category', async (req, res) => {
+    try {
+      const { category } = req.params;
+      const projectsByCategory = await db.query.projects.findMany({
+        where: eq(projects.category, category)
+      });
+      
+      return res.json(projectsByCategory);
+    } catch (error) {
+      console.error('Error fetching projects by category:', error);
+      return res.status(500).json({ error: 'Failed to fetch projects by category' });
+    }
+  });
+
+  app.get('/api/projects/:slug', async (req, res) => {
+    try {
+      const { slug } = req.params;
+      const project = await db.query.projects.findFirst({
+        where: eq(projects.slug, slug)
+      });
+      
+      if (!project) {
+        return res.status(404).json({ error: 'Project not found' });
+      }
+      
+      return res.json(project);
+    } catch (error) {
+      console.error('Error fetching project by slug:', error);
+      return res.status(500).json({ error: 'Failed to fetch project' });
+    }
+  });
+
   app.get('/api/services', async (req, res) => {
     try {
       const servicesData = await db.query.services.findMany();
