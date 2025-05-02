@@ -78,7 +78,12 @@ const ProjectDetailPage = () => {
           <div className="space-y-4">
             <p className="flex flex-col">
               <span className="text-sm text-muted-foreground">Kategori</span>
-              <span>{project.category}</span>
+              <Link 
+                href={`/proyek/kategori/${encodeURIComponent(project.category.toLowerCase())}`}
+                className="hover:underline"
+              >
+                {project.category}
+              </Link>
             </p>
             <p className="flex flex-col">
               <span className="text-sm text-muted-foreground">Lokasi</span>
