@@ -6,8 +6,8 @@ const Footer = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <div>
           <div className="logo mb-2">
-            <Link href="/">
-              <a className="text-foreground font-medium">HARMONY HOUSE</a>
+            <Link href="/" className="text-foreground font-medium">
+              HARMONY HOUSE
             </Link>
           </div>
         </div>
@@ -29,17 +29,17 @@ const Footer = () => {
       
       <div className="mt-10 flex flex-col md:flex-row md:justify-between">
         <div className="flex space-x-6 mb-4 md:mb-0">
-          <Link href="/studio">
-            <a className="text-sm text-muted-foreground hover:text-foreground">Nama Studio</a>
+          <Link href="/studio" className="text-sm text-muted-foreground hover:text-foreground">
+            Nama Studio
           </Link>
-          <Link href="/proyek">
-            <a className="text-sm text-muted-foreground hover:text-foreground">Proyek</a>
+          <Link href="/proyek" className="text-sm text-muted-foreground hover:text-foreground">
+            Proyek
           </Link>
-          <Link href="/layanan">
-            <a className="text-sm text-muted-foreground hover:text-foreground">Layanan</a>
+          <Link href="/layanan" className="text-sm text-muted-foreground hover:text-foreground">
+            Layanan
           </Link>
-          <Link href="/kontak">
-            <a className="text-sm text-muted-foreground hover:text-foreground">Kontak</a>
+          <Link href="/kontak" className="text-sm text-muted-foreground hover:text-foreground">
+            Kontak
           </Link>
         </div>
         

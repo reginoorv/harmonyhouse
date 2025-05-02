@@ -19,15 +19,19 @@ const ProjectCategoryPage = () => {
     queryKey: ['/api/projects'],
   });
   
+  // Safely decode category from URL
+  const decodedCategory = category ? decodeURIComponent(category) : '';
+  
   // Filter projects by category
-  const categoryProjects = allProjects.filter(
-    project => project.category.toLowerCase() === decodeURIComponent(category || '').toLowerCase()
-  );
+  const categoryProjects = allProjects.filter(project => {
+    if (!project.category) return false;
+    return project.category.toLowerCase() === decodedCategory.toLowerCase();
+  });
   
   // Get category name (original case)
   const categoryName = categoryProjects.length > 0 
     ? categoryProjects[0].category 
-    : decodeURIComponent(category || '');
+    : decodedCategory;
 
   if (isLoading) {
     return (
@@ -54,7 +58,7 @@ const ProjectCategoryPage = () => {
     <div className="container-custom py-16">
       <h1 className="text-4xl font-light mb-4">Proyek {categoryName}</h1>
       <p className="text-muted-foreground mb-10">
-        Lihat koleksi desain {categoryName.toLowerCase()} kami yang mengutamakan fungsionalitas dan estetika
+        Lihat koleksi desain {categoryName?.toLowerCase ? categoryName.toLowerCase() : categoryName} kami yang mengutamakan fungsionalitas dan estetika
       </p>
       
       {categoryProjects.length === 0 ? (

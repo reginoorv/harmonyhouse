@@ -28,9 +28,11 @@ const ProjectDetailPage = () => {
   });
   
   // Filter projects with the same category and limit to 3
-  const relatedProjects = allProjects
-    .filter((p) => p.category === project?.category && p.id !== project?.id)
-    .slice(0, 3);
+  const relatedProjects = project?.category 
+    ? allProjects
+        .filter((p) => p.category === project.category && p.id !== project.id)
+        .slice(0, 3)
+    : [];
 
   if (isProjectLoading) {
     return (
@@ -79,10 +81,10 @@ const ProjectDetailPage = () => {
             <p className="flex flex-col">
               <span className="text-sm text-muted-foreground">Kategori</span>
               <Link 
-                href={`/proyek/kategori/${encodeURIComponent(project.category.toLowerCase())}`}
+                href={`/proyek/kategori/${encodeURIComponent(project.category?.toLowerCase() || '')}`}
                 className="hover:underline"
               >
-                {project.category}
+                {project.category || 'Umum'}
               </Link>
             </p>
             <p className="flex flex-col">
