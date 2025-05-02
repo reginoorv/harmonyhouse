@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { useRoute } from 'wouter';
+import { useRoute, Link } from 'wouter';
 import ArrowIcon from '@/components/ui/ArrowIcon';
 
 interface Project {
@@ -21,15 +21,16 @@ const ProjectDetailPage = () => {
     enabled: !!slug,
   });
 
-  // Fetch related projects (same category)
-  const { data: relatedProjects = [], isLoading: isRelatedLoading } = useQuery<Project[]>({
-    queryKey: ['/api/projects/category', project?.category],
+  // Fetch all projects to filter for related projects (same category)
+  const { data: allProjects = [], isLoading: isRelatedLoading } = useQuery<Project[]>({
+    queryKey: ['/api/projects'],
     enabled: !!project?.category,
   });
-
-  const filteredRelatedProjects = relatedProjects.filter(
-    (relatedProject) => relatedProject.id !== project?.id
-  ).slice(0, 3);
+  
+  // Filter projects with the same category and limit to 3
+  const relatedProjects = allProjects
+    .filter((p) => p.category === project?.category && p.id !== project?.id)
+    .slice(0, 3);
 
   if (isProjectLoading) {
     return (
@@ -103,14 +104,14 @@ const ProjectDetailPage = () => {
         </div>
       </div>
       
-      {filteredRelatedProjects.length > 0 && (
+      {relatedProjects.length > 0 && (
         <div>
           <h2 className="text-2xl font-light mb-8">Proyek Terkait</h2>
           
           <div className="grid md:grid-cols-3 gap-8">
-            {filteredRelatedProjects.map((relatedProject) => (
+            {relatedProjects.map((relatedProject) => (
               <div key={relatedProject.id}>
-                <a href={`/proyek/${relatedProject.slug}`} className="block">
+                <Link href={`/proyek/${relatedProject.slug}`} className="block">
                   <div className="overflow-hidden">
                     <img 
                       src={relatedProject.image} 
@@ -122,7 +123,7 @@ const ProjectDetailPage = () => {
                     <span className="text-muted-foreground">{relatedProject.title}</span>
                     <ArrowIcon />
                   </div>
-                </a>
+                </Link>
               </div>
             ))}
           </div>

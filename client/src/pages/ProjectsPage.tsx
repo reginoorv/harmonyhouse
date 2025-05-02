@@ -35,20 +35,18 @@ const ProjectsPage = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project) => (
             <div key={project.id}>
-              <Link href={`/proyek/${project.slug}`}>
-                <a className="block">
-                  <div className="overflow-hidden">
-                    <img 
-                      src={project.image} 
-                      alt={project.title} 
-                      className="w-full h-64 object-cover transition-transform duration-500 hover:scale-105"
-                    />
-                  </div>
-                  <div className="mt-3 flex justify-between items-center">
-                    <span className="text-muted-foreground">{project.title}</span>
-                    <ArrowIcon />
-                  </div>
-                </a>
+              <Link href={`/proyek/${project.slug}`} className="block">
+                <div className="overflow-hidden">
+                  <img 
+                    src={project.image} 
+                    alt={project.title} 
+                    className="w-full h-64 object-cover transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
+                <div className="mt-3 flex justify-between items-center">
+                  <span className="text-muted-foreground">{project.title}</span>
+                  <ArrowIcon />
+                </div>
               </Link>
             </div>
           ))}
