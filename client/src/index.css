@@ -3,6 +3,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* Sembunyikan watermark Replit */
+.replit-ui-floating-badge,
+.replit-ui-banner,
+#watermark,
+.replit-watermark,
+div[data-testid="floating-badge"],
+[data-testid="replit-badge"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
 
 @layer base {
   :root {
