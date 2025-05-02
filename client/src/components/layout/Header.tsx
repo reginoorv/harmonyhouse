@@ -19,18 +19,20 @@ const Header = () => {
   return (
     <header className="container-custom py-6 flex justify-between items-center relative z-50">
       <div className="logo">
-        <Link href="/">
-          <a className="text-foreground font-medium text-lg">HARMONY HOUSE</a>
+        <Link href="/" className="text-foreground font-medium text-lg">
+          HARMONY HOUSE
         </Link>
       </div>
 
       {/* Desktop Navigation */}
       <nav className="hidden md:flex space-x-8">
         {navItems.map((item) => (
-          <Link key={item.path} href={item.path}>
-            <a className={`text-foreground hover-underline ${location === item.path ? 'after:w-full' : ''}`}>
-              {item.label}
-            </a>
+          <Link 
+            key={item.path} 
+            href={item.path} 
+            className={`text-foreground hover-underline ${location === item.path ? 'after:w-full' : ''}`}
+          >
+            {item.label}
           </Link>
         ))}
       </nav>
@@ -58,13 +60,13 @@ const Header = () => {
         <div className="absolute top-full left-0 right-0 bg-background shadow-lg md:hidden z-50">
           <nav className="container-custom py-4 flex flex-col space-y-4">
             {navItems.map((item) => (
-              <Link key={item.path} href={item.path}>
-                <a
-                  className={`text-foreground py-2 ${location === item.path ? 'font-medium' : ''}`}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.label}
-                </a>
+              <Link 
+                key={item.path} 
+                href={item.path}
+                className={`text-foreground py-2 ${location === item.path ? 'font-medium' : ''}`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.label}
               </Link>
             ))}
           </nav>

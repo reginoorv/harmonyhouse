@@ -43,7 +43,7 @@ const ServicesPage = () => {
               <div>
                 <h3 className="text-2xl font-light mb-4">{service.title}</h3>
                 <p className="text-muted-foreground mb-6">{service.longDescription || service.description}</p>
-                <a href={`mailto:hello@harmonyhouse.id?subject=Layanan ${service.title}`} className="flex items-center text-sm hover:underline">
+                <a href={`https://wa.me/6285703178423?text=Halo, saya tertarik dengan layanan ${service.title} dari Harmony House`} target="_blank" rel="noopener noreferrer" className="flex items-center text-sm hover:underline">
                   HUBUNGI KAMI UNTUK LAYANAN INI
                   <ArrowIcon />
                 </a>

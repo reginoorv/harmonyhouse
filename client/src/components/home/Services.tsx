@@ -32,12 +32,21 @@ const Services = () => {
           <div>
             <h3 className="text-xl font-light mb-4">{service.title}</h3>
             <p className="text-muted-foreground mb-6">{service.description}</p>
-            <Link href={`/layanan/${service.slug}`}>
-              <a className="flex items-center text-sm hover:underline">
+            <div className="flex flex-col space-y-3">
+              <Link href={`/layanan/${service.slug}`} className="flex items-center text-sm hover:underline">
                 SELENGKAPNYA
                 <ArrowIcon />
+              </Link>
+              <a 
+                href={`https://wa.me/6285703178423?text=Halo, saya tertarik dengan layanan ${service.title} dari Harmony House`} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex items-center text-sm hover:underline"
+              >
+                HUBUNGI KAMI UNTUK LAYANAN INI
+                <ArrowIcon />
               </a>
-            </Link>
+            </div>
           </div>
           <div className="order-first md:order-none">
             <img
